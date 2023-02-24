@@ -1,4 +1,4 @@
-def dog():
-    return 1,2
+import pyautogui as pa 
 
-print(dog()[0])
+
+print (pa.position()[0])

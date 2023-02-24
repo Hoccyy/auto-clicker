@@ -1,0 +1,42 @@
+# ~~~~~~~
+        
+        #self.spinBox_3.setValue(9)
+        def presetSetter(x, file, altBox, box):
+                with open(file, 'r') as preset:
+                        v = preset.read()
+                        if altBox:
+                                box.setChecked(False)
+                        x.spinBox_2.setValue(int(v.split()[0]))#Sets x Coord
+                        x.spinBox.setValue(int(v.split()[1])) # Sets y coord
+
+        self.pushButton_3.clicked.connect(lambda: presetSetter(self, "preset1.txt", self.checkBox_2.isChecked(), self.checkBox_2)) #Fills in preset 1
+        self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt", self.checkBox.isChecked(), self.checkBox)) #Fills in preset 1
+        #self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt")) #Fills in preset 2
+        
+        
+        self.pushButton_2.clicked.connect(lambda: cursor.moveFunc(self.spinBox_2.value(), self.spinBox.value(), .0033))
+        #self.pushButton_3.clicked.connect(lambda: cursor.preset1(self.checkBox.isChecked()))
+        
+        # ~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+old #1
+     ###[Spinbox functions]~~~~
+        #  Global coords.
+        
+
+        print(self.spinBox_2.value())
+        self.pushButton_2.clicked.connect(lambda: cursor.moveFunc(self.spinBox_2.value(), self.spinBox.value(), 2))##################
+        self.radioButton.toggled.connect(lambda: cursor.preset1())
+        #self.spinBox_2.valueChanged.connect(manChg0) #Change event listener for X-coord
