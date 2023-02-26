@@ -1,8 +1,10 @@
 import pyautogui as pagui
-import time as t
+import time as tim
 
+#Careful due to mouse spam failure issue, try to instead derive screen resolution per device
+#pagui.FAILSAFE = False
 def getPos():
-    x,y = pyautogui.position()
+    x,y = pagui.position()
     return x,y
 
 def moveFunc(x, y, tt):
@@ -39,6 +41,7 @@ def  clickFunc(x, y, tt, rep):
         return -1
     moveFunc(x, y, tt)
     for i in range(rep):
+        tim.sleep(5)
         pagui.click();print("i :3")
 
 def setPos(coordinate_tracker, x, y):
