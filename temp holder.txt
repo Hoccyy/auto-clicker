@@ -29,6 +29,70 @@
         
         
         self.pushButton_5.clicked.connect(lambda: cursor.changePreset(self.checkBox_2, self.checkBox, self.spinBox_2.value(), self.spinBox.value()) )
+        self.pushButton_6.clicked.connect(lambda: cursor.changePreset(self.checkBox_2, self.checkBox, self.spinBox_2.value(), self.spinBox.value()) )
+        #self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt")) #Fills in preset 2
+        
+        
+        self.pushButton_2.clicked.connect(lambda: cursor.moveFunc(self.spinBox_2.value(), self.spinBox.value(), .0033))
+        #Clicker start function
+        self.pushButton.clicked.connect(lambda: cursor.clickFunc(self.spinBox_2.value(), self.spinBox.value(), 0.013, self.spinBox_3.value(), self.doubleSpinBox_4.value()) )
+        self.pushButton_6.clicked.connect(lambda: cursor.clickFunc(self.spinBox_2.value(), self.spinBox.value(), 0.013, self.spinBox_3.value(), self.doubleSpinBox_4.value()) )
+        self.spinBox_2.valueChanged.connect(lambda: labelChg(self.label_5, self.spinBox_2.value(), self.spinBox.value()))
+        self.spinBox.valueChanged.connect(lambda: labelChg(self.label_5, self.spinBox_2.value(), self.spinBox.value()))
+        #self.pushButton_3.clicked.connect(lambda: cursor.preset1(self.checkBox.isChecked()))
+        
+        # ~~~~~~~~~~~~~~~~~~~ Modules.E
+
+
+
+old #5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+old #4
+
+# ~~~~~~~ Modules
+        #self.spinBox_3.setValue(9)
+        #Icon
+
+        #Icon
+        
+        self.pushButton_2.clicked.connect(lambda: cursor.setPos(self.label_5, self.spinBox_2, self.spinBox) ) #Set clicking position
+        #!!!- change of presets
+        #self.pushButton_3.clicked.connect(lambda: cursor.changePreset(self.checkBox_2, self.checkBox, self.spinBox_2, self.spinBox) )
+        
+        def labelChg(coordinate_tracker, x, y):
+                coordinate_tracker.setText("("+str(x) + ", " + str(y)+ ")")
+
+        def presetSetter(x, file, altBox, box, presetOn, coordinate_tracker):
+                with open(file, 'r') as preset:
+                        v = preset.read()
+                        if altBox: ##
+                                box.setChecked(False)
+                        
+                        if not presetOn: ##
+                                return -1
+                        coordinate_tracker.setText("("+v.split()[0]+", "+ v.split()[1] + ")")
+
+                        x.spinBox_2.setValue(int(v.split()[0]))#Sets x Coord
+                        x.spinBox.setValue(int(v.split()[1])) # Sets y coord
+
+        self.pushButton_3.clicked.connect(lambda: presetSetter(self, "preset1.txt", self.checkBox_2.isChecked(), self.checkBox_2, self.checkBox.isChecked(), self.label_5)) #Fills in preset 1
+        self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt", self.checkBox.isChecked(), self.checkBox, self.checkBox_2.isChecked(), self.label_5)) #Fills in preset 2
+        
+        
+        self.pushButton_5.clicked.connect(lambda: cursor.changePreset(self.checkBox_2, self.checkBox, self.spinBox_2.value(), self.spinBox.value()) )
         #self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt")) #Fills in preset 2
         
         
