@@ -1,8 +1,8 @@
-import cursorManip as cursor
+import cursorManip as cursor#Module import
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow, app):#Vital for keeping on top
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 500)
         MainWindow.setMinimumSize(QtCore.QSize(500, 500))
@@ -19,21 +19,21 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.pushButton_3 = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.pushButton_3.setStyleSheet("border-radius: 11.33px;font: 75 22.3pt \"Calibri\";background-color: rgb(172, 212, 255);border: 1px dashed black;")
+        self.pushButton_3.setStyleSheet("border-radius: 11.33px;font: 75 22.3pt Calibri;background-color: rgb(172, 212, 255);border: 1px dashed black;")
         self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout.addWidget(self.pushButton_3)
         self.checkBox = QtWidgets.QCheckBox(self.verticalLayoutWidget)
-        self.checkBox.setStyleSheet("color: black; font: 87 11pt \"Arial\";")
+        self.checkBox.setStyleSheet("color: black; font: 87 11pt Arial;")
         self.checkBox.setObjectName("checkBox")
         self.verticalLayout.addWidget(self.checkBox)
         self.pushButton_4 = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.pushButton_4.setStyleSheet("border-radius: 11.33px; font: 75 22.3pt \"Calibri\"; background-color: rgb(172, 212, 255); border: 1px dashed black;")
+        self.pushButton_4.setStyleSheet("border-radius: 11.33px; font: 75 22.3pt Calibri; background-color: rgb(172, 212, 255); border: 1px dashed black;")
         self.pushButton_4.setObjectName("pushButton_4")
         self.verticalLayout.addWidget(self.pushButton_4)
         self.checkBox_2 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
         self.checkBox_2.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.checkBox_2.setAutoFillBackground(False)
-        self.checkBox_2.setStyleSheet("color: black; font: 87 11pt \"Arial\";")
+        self.checkBox_2.setStyleSheet("color: black; font: 87 11pt Arial;")
         self.checkBox_2.setObjectName("checkBox_2")
         self.verticalLayout.addWidget(self.checkBox_2)
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -43,12 +43,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.spinBox_2 = QtWidgets.QSpinBox(self.horizontalLayoutWidget)
-        self.spinBox_2.setStyleSheet("border-radius: 13px;font: 75 22.3pt \"Calibri\";")
+        self.spinBox_2.setStyleSheet("border-radius: 13px;font: 75 22.3pt Calibri;")
         self.spinBox_2.setMaximum(9999)
         self.spinBox_2.setObjectName("spinBox_2")
         self.horizontalLayout.addWidget(self.spinBox_2)
         self.spinBox = QtWidgets.QSpinBox(self.horizontalLayoutWidget)
-        self.spinBox.setStyleSheet("border-radius: 13px;font: 75 22.3pt \"Calibri\";")
+        self.spinBox.setStyleSheet("border-radius: 13px;font: 75 22.3pt Calibri;")
         self.spinBox.setMaximum(9999)
         self.spinBox.setObjectName("spinBox")
         self.horizontalLayout.addWidget(self.spinBox)
@@ -152,9 +152,10 @@ class Ui_MainWindow(object):
         self.actionClose.setObjectName("actionClose")
         self.actionManual = QtWidgets.QAction(MainWindow)
         self.actionManual.setObjectName("actionManual")
-        self.menuFile.addSeparator()
+        #self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionClose)
         self.menuHelp.addAction(self.actionReport_Bug)
+        self.menuFile.addSeparator()
         self.menuHelp.addAction(self.actionRepositary)
         self.menuHelp.addAction(self.actionManual)
         self.menubar.addAction(self.menuFile.menuAction())
@@ -164,28 +165,21 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
 
-        # ~~~~~~~ Modules
-        #self.spinBox_3.setValue(9)
-        #Icon
-
-        #Icon
-        
+        # ~~~~~~~ Modules        
         self.pushButton_2.clicked.connect(lambda: cursor.setPos(self.label_5, self.spinBox_2, self.spinBox) ) #Set clicking position
-        #!!!- change of presets
-        #self.pushButton_3.clicked.connect(lambda: cursor.changePreset(self.checkBox_2, self.checkBox, self.spinBox_2, self.spinBox) )
-        
-        def labelChg(coordinate_tracker, x, y):
-                coordinate_tracker.setText("("+str(x) + ", " + str(y)+ ")")
 
+        def labelChg(coordinate_tracker, x, y):
+                if (x > 9999 or y > 9999):
+                        sys.exit(ap.exec_())
+                coordinate_tracker.setText("("+str(x) + ", " + str(y)+ ")")
         def presetSetter(x, file, altBox, box, presetOn, coordinate_tracker):
                 with open(file, 'r') as preset:
                         v = preset.read()
-                        if altBox: ##
+                        if altBox:#If the other box is on (checks by which button is clicked)
                                 box.setChecked(False)
-                        
-                        if not presetOn: ##
+                        if not presetOn:#Ends the method if button clicked without checkbox being selected
                                 return -1
-                        coordinate_tracker.setText("("+v.split()[0]+", "+ v.split()[1] + ")")
+                        coordinate_tracker.setText("("+v.split()[0]+", "+ v.split()[1] + ")")#Change the coordinate display
 
                         x.spinBox_2.setValue(int(v.split()[0]))#Sets x Coord
                         x.spinBox.setValue(int(v.split()[1])) # Sets y coord
@@ -193,26 +187,26 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(lambda: presetSetter(self, "preset1.txt", self.checkBox_2.isChecked(), self.checkBox_2, self.checkBox.isChecked(), self.label_5)) #Fills in preset 1
         self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt", self.checkBox.isChecked(), self.checkBox, self.checkBox_2.isChecked(), self.label_5)) #Fills in preset 2
         
-        
-        #self.pushButton_5.clicked.connect(lambda: cursor.changePreset(self.checkBox, self.checkBox_2, self.spinBox_2.value(), self.spinBox.value()) ) # double bt so
-        self.pushButton_7.clicked.connect(lambda: cursor.changePreset(self.checkBox, self.checkBox_2, self.spinBox_2.value(), self.spinBox.value()) )# same
-        #self.pushButton_4.clicked.connect(lambda: presetSetter(self, "preset2.txt")) #Fills in preset 2
-        
+        #Change preset(doubled button)
+        self.pushButton_7.clicked.connect(lambda: cursor.changePreset(self.checkBox, self.checkBox_2, self.spinBox_2.value(), self.spinBox.value()) )        
         
         self.pushButton_2.clicked.connect(lambda: cursor.moveFunc(self.spinBox_2.value(), self.spinBox.value(), .0033))
-        #Clicker start function
+        #Clicker start function(doubled button)
         self.pushButton.clicked.connect(lambda: cursor.clickFunc(self.spinBox_2.value(), self.spinBox.value(), 0.013, self.spinBox_3.value(), self.doubleSpinBox_4.value()) )
-        self.pushButton_6.clicked.connect(lambda: cursor.clickFunc(self.spinBox_2.value(), self.spinBox.value(), 0.013, self.spinBox_3.value(), self.doubleSpinBox_4.value()) )
+        
+        #Functions to check if values were entered manually to both X and Y Coordinate boxes
         self.spinBox_2.valueChanged.connect(lambda: labelChg(self.label_5, self.spinBox_2.value(), self.spinBox.value()))
         self.spinBox.valueChanged.connect(lambda: labelChg(self.label_5, self.spinBox_2.value(), self.spinBox.value()))
         
-        MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        #Vital
+        MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)#Keeps the window on top to fix it disappearing
 
-        #self.pushButton_3.clicked.connect(lambda: cursor.preset1(self.checkBox.isChecked()))
-        
+        self.actionManual.triggered.connect(cursor.openManual)#Opens user manual from 'Help' on menubar
+        self.actionRepositary.triggered.connect(cursor.openRepo)#Opens github repo from 'Help' on menubar
+        self.actionReport_Bug.triggered.connect(cursor.openRepo)#Opens issues on the ^repo from 'Help' on menubar
+        self.actionClose.triggered.connect(lambda: cursor.closeApp(app))#Close button in case
+
         # ~~~~~~~~~~~~~~~~~~~ Modules.E
-
-    
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -221,13 +215,14 @@ class Ui_MainWindow(object):
         self.checkBox.setText(_translate("MainWindow", "Preset 1"))
         self.pushButton_4.setText(_translate("MainWindow", "Set Preset 2"))
         self.checkBox_2.setText(_translate("MainWindow", "Preset 2"))
-        self.spinBox_2.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:9pt; font-weight:400; font-style:italic;\">Sets the x value manually</span></p></body></html>"))
-        self.spinBox.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:9pt; font-style:italic;\">Sets the x value manually</span></p></body></html>"))
+        #Tooltips
+        self.spinBox_2.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:9pt; font-weight:400; font-style:italic;\">Sets the X value manually</span></p></body></html>"))
+        self.spinBox.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:9pt; font-style:italic;\">Sets the Y value manually</span></p></body></html>"))
         self.label.setText(_translate("MainWindow", "X"))
         self.label_2.setText(_translate("MainWindow", "Y"))
         self.label_3.setText(_translate("MainWindow", "Clicks"))
         self.pushButton.setText(_translate("MainWindow", "Start Clicker"))
-        self.pushButton_2.setText(_translate("MainWindow", "Set Position"))
+        self.pushButton_2.setText(_translate("MainWindow", "Set Cursor"))
         self.label_5.setText(_translate("MainWindow", "(0 , 0)"))
         self.pushButton_5.setText(_translate("MainWindow", "Change Preset"))
         self.label_4.setText(_translate("MainWindow", "Delay (Secs)"))
@@ -245,6 +240,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.setupUi(MainWindow, app)
     MainWindow.show()
     sys.exit(app.exec_())

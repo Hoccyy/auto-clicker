@@ -1,11 +1,6 @@
-from PyQt5 import QtWidgets, QtGui, QtCore
-from mywindow_ui import Ui_MainWindow
+fileName = 'AutoClicker.py'
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
 
-    def keyPressEvent(self, event):
-        if event.key() == QtCore.Qt.Key_F8:
-            print("F8 key pressed")
+with open(fileName, 'r') as file:
+    x = file.read()
+    print((x.count("\n")+1))

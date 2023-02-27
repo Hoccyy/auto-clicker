@@ -388,6 +388,7 @@ font: 75 22.3pt &quot;Calibri&quot;;</string>
      <string>Help</string>
     </property>
     <addaction name="actionReport_Bug"/>
+    <addaction name="separator"/>
     <addaction name="actionRepositary"/>
     <addaction name="actionManual"/>
    </widget>

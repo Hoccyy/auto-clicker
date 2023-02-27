@@ -1,9 +1,44 @@
-===========================================================
-                    Hoccyy on Github
-===========================================================
------------------------------------------------------------
+====================================================================================
+|                                   Hoccyy on Github
+===================================================================================
+----------------------------------------------------------------------------------
+
+• The coordinates (x, y) you see is the current cursor position
+  the app has, for ease-of-use.
+  shift the window to the side if it blocks what you need to click
+
+• if the web app is obstructing your view of the screen then 
+  minimize the app, while the clicker is currently not ongoing
+
+• For ease-of-use, you don't need to deselect one preset to enable another,
+  it automatically deselects the previous and enters your desired preset 
 
 
+                                    Getting Started
+-----------------------------------------------------------------------------------
+• To get started click the Set Cursor button.
 
------------------------------------------------------------
-===========================================================
+• It will give you the first reading, so hover where you
+  want to click and then hit space or enter to set the
+  new coordinates.
+• After setting position you then enter how many clicks you need 
+  and then the delay time you want, in seconds, and
+  press the "start clicker" button and it will automatically
+  move your mouse to the current coordinates.
+
+                                    Presets
+• To set presets you select the checkbox of either "Preset1" or "Preset2".
+  After checking a box, you click the "Change Preset" button and then 
+  the current position will be saved for later use.
+
+• To use presets simply click either respective checkbox,
+  then click the "set preset" button and the coordinates are changed.
+  This is useful if you frequently use the app.
+
+
+• For any bugs visit the issues section of the repository on Github
+  https://github.com/Hoccyy/auto-clicker/issues
+
+
+-----------------------------------------------------------------------------------
+====================================================================================

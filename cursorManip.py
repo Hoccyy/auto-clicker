@@ -1,3 +1,5 @@
+import sys, subprocess, os, platform
+import webbrowser as web
 import pyautogui as pagui
 import time as tim
 
@@ -12,7 +14,6 @@ def moveFunc(x, y, tt):
     #                 x, y, time(2)
     pagui.moveTo(x, y,  tt)
 
-#pagui.moveTo(10_000, 10_000,  2)
 #Function to click
 def click():
     try:
@@ -21,19 +22,18 @@ def click():
     except:
         print (0)
 
-def manChg0(self):
-    #print(self.spinBox_2.value()) test if value is working
+'''
+def manChg0(self, ap):
     if self.spinBox_2.value() > 9999:
-            sys.exit(app.exec_())
+            sys.exit(ap.exec_())
             return 0
     xVal = self.spinBox_2.value()
     print(xVal)
-    return 1
+    return 1'''
 
 def fetchPreset1():
     with open("preset1.txt", 'r') as preset1:
         v = preset1.read()
-        #print (int(v.split()[0])) ; print (int(v.split()[1]))
         return (v.split())
 
 def  clickFunc(x, y, tt, repitions, delaySecs):
@@ -66,8 +66,8 @@ def changePreset(preset1, preset2, xVal, yVal):
         if preset1.isChecked() and not preset2.isChecked():
             with open("preset1.txt", 'w') as preset1_:
                 preset1_.write(str(xVal) + " " + str(yVal))
-            '''[Dep.]
-            if preset1.isChecked():
+            
+            '''[Dep.] if preset1.isChecked():
                 preset1.setChecked(False)'''
 
             preset1.setChecked(False)
@@ -78,3 +78,26 @@ def changePreset(preset1, preset2, xVal, yVal):
         preset2.setChecked(False); return 1
         '''if preset2.isChecked(): [Dep.]
             preset2.setChecked(False)'''
+
+def openManual():
+    filepath = 'Manual.txt'
+    if platform.system() == 'Darwin':
+        subprocess.call(('open', filepath))
+        return 1
+        
+    if platform.system() == 'Windows':
+        os.startfile(filepath)
+        return 1
+    else:
+        subprocess.call(('xdg-open', filepath))
+        return 1
+
+#Menu methods for functionality
+def openRepo():
+    repoLink = 'https://github.com/Hoccyy/auto-clicker'
+    web.open(repoLink)
+def reportBug():
+    bugReport = 'https://github.com/Hoccyy/auto-clicker/issues'
+    web.open(bugReport)
+def closeApp(ap):
+    sys.exit(ap.exec_())
