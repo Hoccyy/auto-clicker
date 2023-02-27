@@ -64,7 +64,17 @@ def changePreset(preset1, preset2, xVal, yVal):
 
     if preset1.isChecked() or preset2.isChecked():
         if preset1.isChecked() and not preset2.isChecked():
-            with open("preset1.txt", 'w') as preset1:
-                preset1.write(str(xVal) + " " + str(yVal)) ; return 1
-        with open("preset2.txt", 'w') as preset2:
-            preset2.write(str(xVal) + " " + str(yVal))
+            with open("preset1.txt", 'w') as preset1_:
+                preset1_.write(str(xVal) + " " + str(yVal))
+            '''[Dep.]
+            if preset1.isChecked():
+                preset1.setChecked(False)'''
+
+            preset1.setChecked(False)
+            return 1
+        with open("preset2.txt", 'w') as preset2_:
+            preset2_.write(str(xVal) + " " + str(yVal)) ; 
+        
+        preset2.setChecked(False); return 1
+        '''if preset2.isChecked(): [Dep.]
+            preset2.setChecked(False)'''
