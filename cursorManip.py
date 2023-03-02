@@ -14,6 +14,7 @@ def moveFunc(x, y, tt):
     #                 x, y, time(2)
     pagui.moveTo(x, y,  tt)
 
+'''
 #Function to click
 def click():
     try:
@@ -22,7 +23,7 @@ def click():
     except:
         print (0)
 
-'''
+
 def manChg0(self, ap):
     if self.spinBox_2.value() > 9999:
             sys.exit(ap.exec_())
@@ -42,12 +43,12 @@ def  clickFunc(x, y, tt, repitions, delaySecs):
     moveFunc(x, y, tt)
     if delaySecs != 0:
         for i in range(repitions):
-            pagui.click(); print("click")
+            pagui.click()#; print("click")
             tim.sleep(delaySecs)
         return 1
 
     for i in range(repitions):
-        pagui.click();print("Click")
+        pagui.click()#;print("Click")
 
 def setPos(coordinate_tracker, x, y):
     try:

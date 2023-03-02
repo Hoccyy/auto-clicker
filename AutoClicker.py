@@ -193,6 +193,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.clicked.connect(lambda: cursor.moveFunc(self.spinBox_2.value(), self.spinBox.value(), .0033))
         #Clicker start function(doubled button)
         self.pushButton.clicked.connect(lambda: cursor.clickFunc(self.spinBox_2.value(), self.spinBox.value(), 0.013, self.spinBox_3.value(), self.doubleSpinBox_4.value()) )
+        self.pushButton_6.clicked.connect(lambda: cursor.clickFunc(self.spinBox_2.value(), self.spinBox.value(), 0.013, self.spinBox_3.value(), self.doubleSpinBox_4.value()) )
         
         #Functions to check if values were entered manually to both X and Y Coordinate boxes
         self.spinBox_2.valueChanged.connect(lambda: labelChg(self.label_5, self.spinBox_2.value(), self.spinBox.value()))

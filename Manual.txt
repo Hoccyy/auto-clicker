@@ -2,7 +2,7 @@
 |                                   Hoccyy on Github
 ===================================================================================
 ----------------------------------------------------------------------------------
-
+• To run start.bat
 • The coordinates (x, y) you see is the current cursor position
   the app has, for ease-of-use.
   shift the window to the side if it blocks what you need to click
